@@ -1,0 +1,15 @@
+2. Explain the following questions in your own words
+
+A- What is the difference between some() and every()? Explain these using your own words.
+-->
+a. Difference between some() and every():
+   The `some()` and `every()` methods are used on arrays in JavaScript to check  the elements against a condition.
+   The main difference between them is how they evaluate the elements.
+b.`some()` returns `true` if at least one array element satisfies the condition specified by the provided callback function. 
+   It stops looping through the array after finding a matching element and immediately returns "true".
+   If no element satisfies the condition, it will return "false".
+c. On the other hand, `every()` returns `true` only if all elements of the array satisfy the condition. 
+   It loops through each element of the array and checks if the condition is met for each element. 
+   If an element does not meet the condition, it immediately returns "false". 
+   It only returns "true" if all elements satisfy the condition.
+In short, `some()` checks if at least one element meets the condition, while `every()` checks if all elements meet the condition.condition.
