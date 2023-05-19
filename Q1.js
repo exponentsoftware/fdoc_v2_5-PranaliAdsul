@@ -1,4 +1,4 @@
-// 1. Use the SpaceX API to fetch data about their launches, rockets, and payloads. 
+// 1.A Use the SpaceX API to fetch data about their launches, rockets, and payloads. 
 
 //       ```js
 //       const LAUNCHES_API_URL = 'https://api.spacexdata.com/v4/launches'
@@ -67,13 +67,24 @@ const PAYLOADS_API_URL = 'https://api.spacexdata.com/v4/payloads';
   // Fetch and process the data
    countLaunches();
    findMostCommonRockets();
-//    Example output:
-//     ```sh
-//     [
-//     {rocket: "falcon9", name: "Falcon 9", launches: 120},
-//     {rocket: "falcon1", name: "Falcon 1", launches: 90},
-//     {rocket: "starship", name: "Starship", launches: 55},
-//     {rocket: "falconheavy", name: "Falcon Heavy", launches: 50},
-//     {rocket: "atlas", name: "Atlas V", launches: 30}
-//     ]
-//     ```
+
+//B- Write a function to find the number of launches per year, and display the total number of payloads sent to space each year.
+// Function to find the number of launches per year and total payloads sent each year
+    async function countLaunchesAndPayloads() {
+    const launches = await fetchData(LAUNCHES_API_URL);
+    const payloads = await fetchData(PAYLOADS_API_URL);
+  
+    const result = launches.reduce((acc, launch) => {
+      const year = new Date(launch.date_utc).getFullYear().toString();
+      acc[year] = acc[year] || { year, launches: 0, payloads: 0 };
+      acc[year].launches++;
+      acc[year].payloads += payloads.filter((payload) => payload.launch === launch.id).length;
+      return acc;
+    }, {});
+  
+    console.log(Object.values(result));
+  }
+  
+  // Fetch and process the data
+  countLaunchesAndPayloads();
+  
