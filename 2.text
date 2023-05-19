@@ -2,8 +2,8 @@
 
 A- What is the difference between some() and every()? Explain these using your own words.
 -->
-a. Difference between some() and every():
-   The `some()` and `every()` methods are used on arrays in JavaScript to check  the elements against a condition.
+   Difference between some() and every():
+a. The `some()` and `every()` methods are used on arrays in JavaScript to check  the elements against a condition.
    The main difference between them is how they evaluate the elements.
 b.`some()` returns `true` if at least one array element satisfies the condition specified by the provided callback function. 
    It stops looping through the array after finding a matching element and immediately returns "true".
@@ -13,3 +13,23 @@ c. On the other hand, `every()` returns `true` only if all elements of the array
    If an element does not meet the condition, it immediately returns "false". 
    It only returns "true" if all elements satisfy the condition.
 In short, `some()` checks if at least one element meets the condition, while `every()` checks if all elements meet the condition.condition.
+
+B- Explain the difference between the spread operator and the rest parameter in JavaScript.
+-->
+  The differences between the Spread operator and Rest parameters in JavaScript are:
+a.Spread operator:
+  The spread operator ("...") is used to extract elements from an array or object. 
+  This allows us to distribute the elements of an array or the properties of an object to another array or object. 
+  Expands an iterable elements into individual element.
+* Example:
+  const array = [1, 2, 3];
+  const newArray = [...array]; // Creates a new array with elements [1, 2, 3]
+b.Rest Parameter:
+  The rest parameter ('...')  is used in function declarations to gather individual function arguments into an array. 
+  It allows us to pass any number of arguments to a function, and they will be collected into an array.
+* Example:
+  function sum(...numbers) {
+  return numbers.reduce((acc, curr) => acc + curr, 0);  
+  }
+  sum(1, 2, 3); // Returns 6, as the arguments are collected into an array [1, 2, 3]
+In summary, the spread operator expands an iterable into individual elements, while the rest parameter collects individual function arguments into an array.
