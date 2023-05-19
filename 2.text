@@ -33,3 +33,29 @@ b.Rest Parameter:
   }
   sum(1, 2, 3); // Returns 6, as the arguments are collected into an array [1, 2, 3]
 In summary, the spread operator expands an iterable into individual elements, while the rest parameter collects individual function arguments into an array.
+Difference between splice() and slice() for JavaScript arrays.
+
+C- Explain the difference between splice() and slice() in JavaScript arrays.
+-->
+ Difference between splice() and slice() for JavaScript arrays.
+a.Splice(): 
+ The splice() method is used to modify an array by adding, removing, or replacing elements. 
+ We can use this to modify the contents of the array by specifying the starting index, 
+ the number of elements to remove (optional), and any elements to add (optional).
+ Modifies the original array and returns the removed elements as a new array.
+* Example usage of splice():
+ const array = [1, 2, 3, 4, 5];
+ const removedElements = array.splice(2, 2, 'a', 'b'); // Removes 2 elements starting from index 2 and adds 'a' and 'b'
+ console.log(array); // Output: [1, 2, 'a', 'b', 5]
+ console.log(removedElements); // Output: [3, 4]
+b.Slice():
+ slice(): The slice() method is used to create a new array containing part of the original array.
+ it allows us to extract elements from an array without changing the original array. 
+ Given a starting index (inclusive) and an ending index (exclusive), 
+ slice() returns a new array containing the selected elements.
+* Example usage of slice():
+ const array = [1, 2, 3, 4, 5];
+ const newArray = array.slice(1, 4); // Extracts elements starting from index 1 up to (but not including) index 4
+ console.log(newArray); // Output: [2, 3, 4]
+ console.log(array); // Output: [1, 2, 3, 4, 5] (original array remains unchanged)
+ 
