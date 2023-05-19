@@ -1,10 +1,4 @@
 // 1.A Use the SpaceX API to fetch data about their launches, rockets, and payloads. 
-
-//       ```js
-//       const LAUNCHES_API_URL = 'https://api.spacexdata.com/v4/launches'
-//       const ROCKETS_API_URL = 'https://api.spacexdata.com/v4/rockets'
-//       const PAYLOADS_API_URL = 'https://api.spacexdata.com/v4/payloads'
-//       ```
 const LAUNCHES_API_URL = 'https://api.spacexdata.com/v4/launches';
 const ROCKETS_API_URL = 'https://api.spacexdata.com/v4/rockets';
 const PAYLOADS_API_URL = 'https://api.spacexdata.com/v4/payloads';
@@ -36,6 +30,7 @@ const PAYLOADS_API_URL = 'https://api.spacexdata.com/v4/payloads';
     console.log('Successful launches:', successfulCount);
     console.log('Unsuccessful launches:', unsuccessfulCount);
   }
+  
 //- Write a function to find the 5 most common rocket IDs used in the launches and their respective counts. Also, display the full rocket name alongside the rocket ID.
 
     async function findMostCommonRockets() {
@@ -85,6 +80,39 @@ const PAYLOADS_API_URL = 'https://api.spacexdata.com/v4/payloads';
     console.log(Object.values(result));
   }
   
-  // Fetch and process the data
+//   Fetch and process the data
   countLaunchesAndPayloads();
+
+//C- Write a function that calculates the total mass of payloads sent to space for each rocket. For this, you'll need to merge the payload and launch data.
+// Function to calculate the total mass of payloads sent to space for each rocket
+    async function calculateTotalPayloadMass() {
+    const launches = await fetchData(LAUNCHES_API_URL);
+    const payloads = await fetchData(PAYLOADS_API_URL);
+    const rockets = await fetchData(ROCKETS_API_URL);
+  
+    const rocketPayloads = {};
+  
+    for (const launch of launches) {
+      const rocketId = launch.rocket;
+  
+      if (!rocketPayloads.hasOwnProperty(rocketId)) {
+        rocketPayloads[rocketId] = {
+          rocket: rocketId,
+          name: rockets.find((rocket) => rocket.id === rocketId)?.name || 'Unknown',
+          totalMass: 0
+        };
+      }
+  
+      const launchPayloads = payloads.filter((payload) => payload.launch === launch.id);
+      const launchPayloadMass = launchPayloads.reduce((total, payload) => total + (payload.mass_kg || 0), 0);
+      rocketPayloads[rocketId].totalMass += launchPayloadMass;
+    }
+  
+    const result = Object.values(rocketPayloads);
+  
+    console.log(result);
+  }
+  
+  // Fetch and process the data
+  calculateTotalPayloadMass();
   
