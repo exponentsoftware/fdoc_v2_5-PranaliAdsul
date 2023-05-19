@@ -58,4 +58,11 @@ b.Slice():
  const newArray = array.slice(1, 4); // Extracts elements starting from index 1 up to (but not including) index 4
  console.log(newArray); // Output: [2, 3, 4]
  console.log(array); // Output: [1, 2, 3, 4, 5] (original array remains unchanged)
- 
+In summary:
+splice(): Modifies the original array, allows adding/replacing elements, and returns the removed elements.
+slice(): Creates a new array, extracts a portion of the array, and does not modify the original.
+In short, splice() changes the array, slice() creates a new array.
+
+
+
+
